@@ -5,8 +5,8 @@ const sendMail=require('../Services/mailSender')
 
 const signUp = (req, res) => {
     const { name, email,password } = req.body
-    
-    pool.query(`select*from users where email='${email}'`, (err, result) => {
+    console.log("Inside signUp");
+    pool.query(`select*from users where email='${email}' or name='${name}'`, (err, result) => {
         if (err)
         {
             console.log("Error in finding user SignUP fun ",err);
@@ -30,7 +30,6 @@ const signUp = (req, res) => {
     })
 
 }
-
 const saveUser = (req, res) => {
     
     let {name,email,password}=req.obj
